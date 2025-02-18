@@ -1,0 +1,206 @@
+body {
+    background-color: #e0e0e0;
+    font-weight:300;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+.off-screen-menu{
+    background-color: black;
+    color: #e0e0e0;
+    height: 100vh;
+    width: 100%;
+    max-width: 250px;
+    position: fixed;
+    top:40px;
+    left:-250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+    transition: .3s ease;
+}
+.off-screen-menu ul{
+    list-style-type: none;
+    padding: 0;
+    margin:0;
+}
+.dropdown button{
+    color: #e0e0e0;
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+.dropdown a{
+    display: block;
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 15px;
+}
+
+.dropdown .content{
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 100px;
+    box-shadow: 2px 2px 5px transparent;
+}
+
+.content.active{
+    display: block;
+}
+
+.dropdown:hover button{
+    background-color: #1b1b1b;
+}
+
+.dropdown a:hover{
+    background-color: #1b1b1b;
+}
+.off-screen-menu.active {
+    left: 0;
+}
+.small-icon {
+    width: 30px;  /* Adjust width */
+    height: auto; /* Adjust height */
+    object-fit: contain;
+    padding-top: 2px;
+}
+#menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+#menu-icon {
+    width: 25px;  /* Adjust button size */
+    height: auto;
+    padding-bottom: 15px;
+}
+
+.navbar {
+    display: flex;          /* Use flexbox for alignment */
+    align-items: center;    /* Align items vertically */
+    background-color: black;
+    height: 40px;
+    text-align: right;
+}
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;          /* Aligns list items horizontally */
+    align-items: center;
+    width: 100%;            /* Ensures navbar stretches across */
+}
+
+.navbar ul li {
+    display: inline;
+    margin-right: 1rem;
+}
+
+.navbar ul li:last-child {
+    margin-left: auto; /* Moves last item (image) to the right */
+}
+.title {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.search-wrap {
+    /* display:flex;
+    justify-content: center;
+    margin-top: 50px; */
+    width: 95%;
+    padding: 1em 1em 1em 1em;
+    max-width: 44em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+.search-text {
+    text-align: center;
+    font-size:18px;
+}
+form {
+    margin: 0;
+}
+.search {
+    margin-top: 0.7em;
+    font-size:18px;
+    border-radius: 2px;
+    display: block;
+    position: relative;
+    height: 2.8em;
+    background-color: black;
+    border: 1px solid #b0b0b0;
+    padding-left: 0.75em;
+    padding-right: 6.5em;
+}
+input[type=text]{
+    font-family: 'Open Sans';
+    font-weight: 300;
+    vertical-align: middle;
+    padding: 4px;
+    border-radius: 4px 4px 4px 4px;
+    appearance: none;
+}
+.search_input {
+    font-size: 1.1em;
+    display: block;
+    width: 111%;
+    background: none;
+    outline: none;
+    border: none;
+    height: 2.4em;
+    z-index: 1;
+    position: relative;
+    top:-1px;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    margin: 5%;
+    width: 500px;
+}
+
+.auth-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-buttons .btn {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.whitebox{
+    align-self:center;
+    margin: auto;
+    margin-top:5em;
+    width: 25em;
+    border-radius:1em;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    padding: 5em;
+}

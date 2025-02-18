@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name ="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
+        <title> Search </title>
+    </head>
+<body>    
+    <div class="off-screen-menu">
+        <ul>
+            <li>
+                <div class = "dropdown">
+                    <button>v Categories</button>
+                    <div class = "content">
+                        <a href="">Hats</a>
+                        <a href="">Jewelry</a>
+                        <a href="">Tops</a>
+                        <a href="">Bottoms</a>
+                        <a href="">Dresses</a>
+                        <a href="">Shoes</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+        <!-- header w/ signin/signup  -->
+        <header class="site-header">
+            <div class="navbar">
+                <li>
+            <!-- This is the three line menu -->
+        {% load static %}
+        <!-- So this is where we are kind of holding the two types of like
+         buttons, the open and the closed. within the html file. then it is changed
+         when it is clicked THROUGH javascript -->            
+        <button id="menu-toggle">
+            <!-- Then here is just where it is taken from!!!! you link both in
+             the img id for the button IG.... all styling done thru css and stuff
+             ofc-->
+            <img id="menu-icon"
+               src="{% static 'myapp/js/linesCLOSED.png' %}"
+                 alt="Menu"
+                 data-closed="{% static 'myapp/js/linesCLOSED.png' %}"
+                data-open="{% static 'myapp/js/linesOPENED.png' %}">
+        </button>
+
+        </li>
+                <ul>
+                    <li><a href="/">
+                        <IMG src="{% static 'myapp/js/shoppingbasket.png' %}" alt="Basket" class="small-icon" >
+                    </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- <div class="container">
+            </div> -->
+        </header>
+        <main>
+            <!-- Logo -->
+            <div class="logo">
+                <IMG src="{% static '/myapp/js/VMlogo.png' %}">
+            </div>
+            <!-- search bar -->
+            <div class="search-wrap">
+                <div class="search-text">
+                    Search for an item :
+                </div>
+               <!-- <form action = "{111111{ url_for('list_songs') }}" class = "search" method = "POST">
+                    <form id="search_form" class="search" method="POST">
+                        <input class="typeahead search_input" type="text" name="f" id="f"
+                        maxlength="95" autofocus="autofocus" autocomplete="off">
+                    </form> -->
+            </div>
+        </main>
+    </body>
+</html>
+
+<script src="{% static 'myapp/js/home.js' %}"></script>
+{% load static %}
