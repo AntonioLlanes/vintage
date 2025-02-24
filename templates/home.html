@@ -12,7 +12,7 @@
         <ul>
             <li>
                 <div class = "dropdown">
-                    <button>v Categories</button>
+                    <button>Categories v</button>
                     <div class = "content">
                         <a href="">Hats</a>
                         <a href="">Jewelry</a>
@@ -63,16 +63,19 @@
                 <IMG src="{% static '/myapp/js/VMlogo.png' %}">
             </div>
             <!-- search bar -->
-            <div class="search-wrap">
-                <div class="search-text">
-                    Search for an item :
-                </div>
-               <!-- <form action = "{111111{ url_for('list_songs') }}" class = "search" method = "POST">
-                    <form id="search_form" class="search" method="POST">
-                        <input class="typeahead search_input" type="text" name="f" id="f"
-                        maxlength="95" autofocus="autofocus" autocomplete="off">
-                    </form> -->
+            <!-- templates/home.html -->
+            <div class="product-grid">
+                {% for product in products %}
+                    <div class="product-card">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <h2>{{ product.name }}</h2>
+                            <p>{{ product.category }}</p>
+                            <p>{{ product.brand }}</p>
+                            <p>${{ product.price }}</p>
+                    </div>
+                {% endfor %}
             </div>
+
         </main>
     </body>
 </html>
