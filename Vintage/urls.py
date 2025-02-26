@@ -24,5 +24,9 @@ from myapp.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home' ),
-path('add-product/', views.add_product, name='add_product'),
+    path('product/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('add-product/', views.add_product, name='add_product'),
+    path('checkout/<int:product_id>/', views.checkout, name='checkout'),
+    path('success/', views.success, name='success'),
+    path('cancel/', views.cancel, name='cancel'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

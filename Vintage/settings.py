@@ -19,6 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Stripe API Keys
+STRIPE_PUBLIC_KEY = 'pk_test_51QvutZPw96YuzF5GnZ2ArnkDfKwA49tPCoISOVllyq1aaCIKMcuVHk6H0FC7sHHtHM2f7EWYrD85SkYFsfwrj1w700GrQsWJ8a'
+STRIPE_SECRET_KEY = 'sk_test_51QvutZPw96YuzF5GNnTE0BfzBl7ORELPixxXVVzy51GkaYbbnEvJAEXVbfEw7Ma6OugyvMQbN4jdmsDEda5WF8Aw00vqXEYlAq'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 

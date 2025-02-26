@@ -1,0 +1,101 @@
+/* Product Detail Page Layout */
+.product-detail-container {
+    display: flex;
+    gap: 30px;                /* Space between image and product details */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+/* Image Slider Section */
+.product-slider {
+    flex: 1;                  /* Take up 60% of the space */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 60%;
+    height: 500px;            /* Control slider height */
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 500px;            /* Make images take full height */
+    object-fit: cover;        /* Ensure images fit within the slider */
+    border-radius: 10px;
+}
+
+/* Product Details Section */
+.product-details {
+    flex: 1;                  /* Take up 40% of the space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-details h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.product-details p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Buy Button */
+.buy-button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #0056b3;
+}
+
+/* Swiper Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Swiper Pagination Dots */
+.swiper-pagination-bullet {
+    background: #007bff;
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product-detail-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-slider {
+        max-width: 100%;
+    }
+
+    .product-details {
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+}

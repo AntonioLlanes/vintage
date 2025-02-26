@@ -5,7 +5,7 @@
     <head>
         <meta name ="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
         <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
-        <title> Search </title>
+        <title> Home </title>
     </head>
 <body>    
     <div class="off-screen-menu">
@@ -62,19 +62,63 @@
             <div class="logo">
                 <IMG src="{% static '/myapp/js/VMlogo.png' %}">
             </div>
+            {% load static %}
+                <!-- templates/home.html -->
+            <div class="instagram-section">
+                <!-- Instagram Grid (Left Side) -->
+                <div class="instagram-gallery">
+                    <div class="grid-container">
+                        {% for image in instagram_images %}
+                            <div class="grid-item">
+                                <a href="{{ image.post_url }}" target="_blank">
+                                    <img src="{{ image.image_url }}" alt="Instagram Photo">
+                                </a>
+                            </div>
+                        {% empty %}
+                            <p>No Instagram images available.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+    <!-- Catchy Text (Right Side) -->
+    <div class="instagram-text">
+        <h2>Retro Finds, Fresh Feeds.<br>Tap In.</h2>
+        <a href="https://www.instagram.com/yourbrand" target="_blank" class="follow-button">
+            Follow Us →
+        </a>
+    </div>
+</div>
+
+
+
             <!-- search bar -->
+            <!-- templates/home.html -->
             <!-- templates/home.html -->
             <div class="product-grid">
                 {% for product in products %}
                     <div class="product-card">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                            <h2>{{ product.name }}</h2>
-                            <p>{{ product.category }}</p>
-                            <p>{{ product.brand }}</p>
+                        <a href="{% url 'product_detail' product.id %}">
+                            <div class="image-container">
+                                <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}" class="first-image">
+                                {% if product.images.all|length > 1 %}
+                                    <img src="{{ product.images.all.1.image.url }}" alt="{{ product.name }}" class="second-image">
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="product-info">
+                            <div class="title-container">
+                                <h2 class="{% if product.name|length > 25 %}long-title{% endif %}">
+                                    <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                                </h2>
+                            </div>
                             <p>${{ product.price }}</p>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
+
+
+
 
         </main>
     </body>
