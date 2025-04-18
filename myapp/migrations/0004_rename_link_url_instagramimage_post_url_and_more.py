@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='instagramimage',
             name='image_url',
-            field=models.URLField(blank=True, help_text='URL of the Instagram image', max_length=500, null=True),
+            field=models.URLField(blank=True, help_text='URL of the instagram image', max_length=500, null=True),
         ),
     ]

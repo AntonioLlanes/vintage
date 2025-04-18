@@ -42,8 +42,8 @@ class ProductImage(models.Model):
 
 
 class InstagramImage(models.Model):
-    post_url = models.URLField(max_length=500, help_text="URL of the Instagram post")
-    image_url = models.URLField(max_length=500, blank=True, null=True, help_text="URL of the Instagram image")
+    image_file = models.ImageField(upload_to='instagram/', null=True, blank=True)
+    link = models.URLField(blank=True, null=True)
 
     def __str__(self):
-        return self.post_url
+        return self.image_file.name.split('/')[-1] if self.image_file else "📸 Untitled Post"

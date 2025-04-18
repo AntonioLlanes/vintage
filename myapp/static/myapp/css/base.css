@@ -1,0 +1,45 @@
+body {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  background-color: #fff;
+  color: #222;
+    margin: 0;
+  padding: 0;
+  width: 100%;
+
+}
+
+.site-header {
+  background-color: #000;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.75rem 2rem;
+
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+}
+
+
+
+.logo {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  letter-spacing: 1px;
+  color: white;
+  text-decoration: none;
+}
+
+
+.navbar {
+  /* add styling here when you're ready for links */
+}
+
+main {
+  padding: 2rem 3rem;
+}

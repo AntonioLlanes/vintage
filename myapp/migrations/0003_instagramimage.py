@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
             name='InstagramImage',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image_url', models.URLField(help_text='URL of the Instagram image', max_length=500)),
-                ('link_url', models.URLField(help_text='URL of the Instagram post', max_length=500)),
+                ('image_url', models.URLField(help_text='URL of the instagram image', max_length=500)),
+                ('link_url', models.URLField(help_text='URL of the instagram post', max_length=500)),
             ],
         ),
     ]

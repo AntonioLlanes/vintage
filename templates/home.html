@@ -1,99 +1,59 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name ="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-        <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
-        <title> Home </title>
-    </head>
-<body>    
-    <div class="off-screen-menu">
-        <ul>
-            <li>
-                <div class = "dropdown">
-                    <button>Categories v</button>
-                    <div class = "content">
-                        <a href="">Hats</a>
-                        <a href="">Jewelry</a>
-                        <a href="">Tops</a>
-                        <a href="">Bottoms</a>
-                        <a href="">Dresses</a>
-                        <a href="">Shoes</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Preload Logo to Prevent Flickering -->
+    <link rel="preload" as="image" href="{% static 'myapp/js/VMlogo.png' %}">
+
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
+</head>
+<body>
+    <!-- Intro Screen -->
+    <div id="intro-screen">
+        <img src="{% static 'myapp/js/VMlogo.png' %}" alt="Vintage Logo" id="intro-logo">
     </div>
 
-        <!-- header w/ signin/signup  -->
+    <!-- Main Site Content -->
+    <div id="site-content">
+        <!-- Navigation Bar -->
         <header class="site-header">
-            <div class="navbar">
-                <li>
-            <!-- This is the three line menu -->
-        {% load static %}
-        <!-- So this is where we are kind of holding the two types of like
-         buttons, the open and the closed. within the html file. then it is changed
-         when it is clicked THROUGH javascript -->            
-        <button id="menu-toggle">
-            <!-- Then here is just where it is taken from!!!! you link both in
-             the img id for the button IG.... all styling done thru css and stuff
-             ofc-->
-            <img id="menu-icon"
-               src="{% static 'myapp/js/linesCLOSED.png' %}"
-                 alt="Menu"
-                 data-closed="{% static 'myapp/js/linesCLOSED.png' %}"
-                data-open="{% static 'myapp/js/linesOPENED.png' %}">
-        </button>
-
-        </li>
-                <ul>
-                    <li><a href="/">
-                        <IMG src="{% static 'myapp/js/shoppingbasket.png' %}" alt="Basket" class="small-icon" >
-                    </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- <div class="container">
-            </div> -->
+            <!-- Your navigation content here -->
         </header>
+
+        <!-- Main Content -->
         <main>
-            <!-- Logo -->
+            <!-- Homepage Logo -->
             <div class="logo">
-                <IMG src="{% static '/myapp/js/VMlogo.png' %}">
+                <img src="{% static 'myapp/js/VMlogo.png' %}" alt="Homepage Logo">
             </div>
-            {% load static %}
-                <!-- templates/home.html -->
+
+            <!-- Instagram Section -->
             <div class="instagram-section">
-                <!-- Instagram Grid (Left Side) -->
                 <div class="instagram-gallery">
                     <div class="grid-container">
                         {% for image in instagram_images %}
                             <div class="grid-item">
-                                <a href="{{ image.post_url }}" target="_blank">
-                                    <img src="{{ image.image_url }}" alt="Instagram Photo">
+                                <a href="{{ image.link }}" target="_blank">
+                                    <img src="{{ image.image_file.url }}" alt="Instagram Image">
                                 </a>
                             </div>
-                        {% empty %}
-                            <p>No Instagram images available.</p>
                         {% endfor %}
                     </div>
                 </div>
+                <div class="instagram-text">
+                    <h2>Retro Finds, Fresh Feeds.<br>Tap In.</h2>
+                    <a href="https://www.instagram.com/yourbrand" target="_blank" class="follow-button">
+                        Follow Us →
+                    </a>
+                </div>
+            </div>
 
-    <!-- Catchy Text (Right Side) -->
-    <div class="instagram-text">
-        <h2>Retro Finds, Fresh Feeds.<br>Tap In.</h2>
-        <a href="https://www.instagram.com/yourbrand" target="_blank" class="follow-button">
-            Follow Us →
-        </a>
-    </div>
-</div>
-
-
-
-            <!-- search bar -->
-            <!-- templates/home.html -->
-            <!-- templates/home.html -->
+            <!-- Product Grid -->
             <div class="product-grid">
                 {% for product in products %}
                     <div class="product-card">
@@ -116,13 +76,10 @@
                     </div>
                 {% endfor %}
             </div>
-
-
-
-
         </main>
-    </body>
-</html>
+    </div>
 
-<script src="{% static 'myapp/js/home.js' %}"></script>
-{% load static %}
+    <!-- Link to External JavaScript -->
+    <script src="{% static 'myapp/js/home.js' %}"></script>
+</body>
+</html>
