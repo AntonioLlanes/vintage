@@ -70,21 +70,94 @@
     max-width: 90%;
   }
 }
-.buy-now-btn {
-  background: black;
-  color: white;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.terms-checkbox-container {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #444;
 }
 
-.buy-now-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+.terms-checkbox-container input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.terms-checkbox-container a {
+  color: #c36a4a;
+  text-decoration: underline;
+}
+
+.terms-checkbox-container a:hover {
+  text-decoration: none;
+}
+.buy-now-btn {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 10px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.buy-now-btn:hover:enabled {
+  background-color: #111;
+}
+
+.buy-now-btn:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: default;
+}
+
+/* SHAKE ANIMATION (FOR REAL THIS TIME) */
+@keyframes shakeItRealGood {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shakeItRealGood 0.4s ease;
+}
+
+.add-to-cart-btn, .in-cart-btn {
+  display: inline-block;
+  margin-top: 1em;
+  padding: 0.6em 1.4em;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn {
+  background-color: #222;
+  color: white;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #000;
+}
+
+.in-cart-btn {
+  background-color: #ddd;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.in-cart-btn:hover {
+  background-color: #ccc;
 }

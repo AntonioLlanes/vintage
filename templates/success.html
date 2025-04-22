@@ -1,11 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Payment Successful!</h1>
-    <p>Thank you for your purchase!</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="checkout-success">
+    <h1>Thank you for your order 💖</h1>
+    <p>Your items will be shipped soon. We appreciate your business!</p>
+    <a href="/" class="btn-return-home">Return to Home</a>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+.checkout-success {
+    max-width: 600px;
+    margin: 6em auto;
+    text-align: center;
+    background: white;
+    padding: 3em;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.checkout-success h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.checkout-success p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.btn-return-home {
+    display: inline-block;
+    margin-top: 2em;
+    padding: 0.75em 2em;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-return-home:hover {
+    background-color: #333;
+}
+</style>
+{% endblock %}

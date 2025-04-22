@@ -4,20 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}Vintagé Memèrè{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'myapp/css/base.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'myapp/css/base.css' %}">
   {% block extra_head %}{% endblock %}
 </head>
+
 <body>
   <header class="site-header">
     <a href="/" class="logo">VINTAGEMÉMÈRE</a>
     <nav class="navbar">
-      <!-- nav links go here if needed later -->
+      <!-- Add nav links or dropdowns here -->
+
+      <!-- Cart Icon -->
+      <ul class="nav-right">
+        <li>
+          <a href="{% url 'cart' %}">
+            <img src="{% static 'myapp/js/shoppingbasket.png' %}" alt="Cart" class="cart-icon-img">
+          </a>
+        </li>
+      </ul>
     </nav>
   </header>
 
-  <main>
-    {% block content %}{% endblock %}
+  <main class="main-content-wrapper">
+    {% block content %}
+    <!-- default fallback content (if needed) -->
+    {% endblock %}
   </main>
+
+  {% block extra_scripts %}{% endblock %}
 </body>
 </html>

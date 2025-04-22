@@ -25,21 +25,43 @@
     <h1 class="product-name">{{ product.name }}</h1>
     <p class="product-price">${{ product.price }}</p>
     <p class="product-description">{{ product.description }}</p>
-    <!-- Buy Now Button -->
-        <form action="{% url 'checkout' product.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="buy-now-btn">Buy Now</button>
-        </form>
+      {% if product.id|stringformat:"s" in request.session.cart %}
+  <!-- Product is already in cart -->
+  <a href="{% url 'cart' %}" class="in-cart-btn">In Cart →</a>
+{% else %}
+  <!-- Product is not in cart -->
+  <form action="{% url 'add_to_cart' product.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+  </form>
+{% endif %}
+  
+
+
+
     </div>
 </div>
   </div>
-</div>
-
-</div>
-
 <script>
   function changeMainImage(thumbnail) {
     document.getElementById("mainProductImage").src = thumbnail.src;
   }
-</script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const checkbox = document.getElementById("termsCheckbox");
+    const buyButton = document.getElementById("buyNowButton");
+
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        buyButton.disabled = false;
+        buyButton.classList.remove("disabled-btn");
+      } else {
+        buyButton.disabled = true;
+        buyButton.classList.add("disabled-btn");
+      }
+    });
+
+  </script>
+
+    
 {% endblock %}

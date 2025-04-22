@@ -44,14 +44,25 @@ window.addEventListener('load', () => {
         introLogo.style.transition = 'transform 1s ease-in-out';
     }, 2500);
 
-    // Step 4: Reveal main content and homepage logo
+  // Step 4: Reveal main content and homepage logo
+setTimeout(() => {
+    // Fade out intro screen
+    screen.style.transition = 'opacity 1s ease';
+    screen.style.opacity = 0;
+
+    // Fade in real logo
+    realLogoContainer.style.transition = 'opacity 0.5s ease';
+    realLogoContainer.style.opacity = 1;
+
+    // Fade in page content
+    content.style.transition = 'opacity 1s ease';
+    content.style.opacity = 1;
+
+    // After fade-out is done, fully remove intro screen
     setTimeout(() => {
         screen.style.display = 'none';
-        content.style.transition = 'opacity 1s ease';
-        content.style.opacity = 1;
-        realLogoContainer.style.transition = 'opacity 0.5s ease';
-        realLogoContainer.style.opacity = 1;
-    }, 3700);
+    }, 1000);
+}, 3700);
 });
 
 // Burger menu & dropdown toggle

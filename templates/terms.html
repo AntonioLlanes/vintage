@@ -1,0 +1,98 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Store Policy & Legal Disclaimer | Vintage Memere</title>
+  <link rel="stylesheet" href="{% static 'myapp/css/terms.css' %}">
+  <!-- Use your site's main font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="site-header">
+    <a href="/" class="logo">VINTAGEMÉMÈRE</a>
+    <nav class="navbar">
+      <!-- Add nav links or dropdowns here -->
+
+      <!-- Cart Icon -->
+      <ul class="nav-right">
+        <li>
+          <a href="{% url 'cart' %}">
+            <img src="{% static 'myapp/js/shoppingbasket.png' %}" alt="Cart" class="cart-icon-img">
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="flex-wrapper">
+    <div class="terms-container">
+      <h1>Store Policy & Legal Disclaimer</h1>
+      <p class="last-updated">Last Updated: April 18, 2025</p>
+
+      <section>
+        <p>Thank you for shopping with Vintage Memere. By purchasing from us, you agree to the following terms and conditions. These policies are designed to ensure transparency and protect both you as a customer and our small business.</p>
+      </section>
+
+      <section>
+        <h2>Trademark & Brand</h2>
+        <p>
+          <strong>Affiliation Disclaimer:</strong><br>
+          Vintage Memere is an independent seller of vintage and pre-loved goods. We are not affiliated with, endorsed by, or officially connected to any of the brands featured in our inventory.<br><br>
+          All brand names, logos, and trademarks appearing on our items belong to their respective trademark holders. These are used for descriptive purposes only and do not imply any association or authorization.
+        </p>
+      </section>
+
+      <section>
+        <h2>Condition & Authenticity of Items</h2>
+        <p>All products sold are vintage or secondhand and may exhibit signs of age, wear, or previous use. We make every effort to inspect and describe each piece accurately, including any flaws.</p>
+        <p>While we strive to source authentic items, not all vintage goods come with original documentation or packaging. We encourage all buyers to contact us with any questions prior to purchasing.</p>
+      </section>
+
+      <section>
+        <h2>Return & Exchange Policy</h2>
+        <p>We offer a 24-hour return window for store credit or exchange only.</p>
+        <ul>
+          <li>Customers must contact us within 24 hours of receipt.</li>
+          <li>Items must be in the same condition as purchased—unworn, unwashed, and with any original tags or packaging.</li>
+          <li>Return shipping, if applicable, is the responsibility of the buyer.</li>
+          <li>Final sale items, discounted merchandise, and mystery items are non-returnable.</li>
+        </ul>
+        <p>We reserve the right to refuse any return that does not meet these terms.</p>
+      </section>
+
+      <section>
+        <h2>No Warranty Disclaimer</h2>
+        <p>All items are sold “as-is” without express or implied warranties. Vintage Memere is not responsible for issues related to fit, wearability, or damages that occur after the item has been sold. All purchases are made at the buyer’s discretion.</p>
+      </section>
+
+      <section>
+        <h2>Order Processing & Payments</h2>
+        <p>Orders will be processed and shipped within 3–5 business days after payment is received. Items will not be shipped until full payment is confirmed.</p>
+      </section>
+
+      <section>
+        <h2>Privacy Assurance</h2>
+        <p>Customer information is used solely for order fulfillment and communication. We will never sell or share your data with third parties. Your privacy and trust are important to us.</p>
+      </section>
+
+      <section>
+        <h2>Limitation of Liability</h2>
+        <p>By shopping with Vintage Memere, customers acknowledge and agree to release us from any liability related to their purchase or experience.</p>
+      </section>
+
+      <section>
+        <h2>Contact Us</h2>
+        <p>If you have questions regarding our policies or a recent purchase, we’re happy to help.</p>
+        <p>Email: <a href="mailto:vintagememere@gmail.com">vintagememere@gmail.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/vintagememere" target="_blank">@vintagememere</a></p>
+      </section>
+
+      <footer>
+        <p>&copy; 2025 Vintage Memere. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

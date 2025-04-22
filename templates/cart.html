@@ -1,0 +1,76 @@
+{% load static %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'myapp/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+    <header class="site-header">
+    <a href="/" class="logo">VINTAGEMÉMÈRE</a>
+    <nav class="navbar">
+      <!-- Add nav links or dropdowns here -->
+    </nav>
+  </header>
+<div class="cart-container">
+    <h1 class="cart-title">Your Shopping Cart</h1>
+
+    {% for item in cart_items %}
+        <div class="cart-item">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+            <div class="cart-item-details">
+                <h3>{{ item.name }}</h3>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Price: ${{ item.price }}</p>
+            </div>
+            <form method="POST" action="{% url 'remove_from_cart' item.id %}" class="remove-form">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">Remove</button>
+            </form>
+        </div>
+    {% empty %}
+        <p class="empty-message">Your cart is empty 🥲</p>
+    {% endfor %}
+
+    <div class="cart-total">
+        Total: ${{ total_price }}
+    </div>
+
+    {% if cart_items %}
+    <form method="POST" action="{% url 'checkout' %}" class="checkout-form">
+    {% csrf_token %}
+    <div class="terms-checkout">
+        <label class="terms-label">
+            <input type="checkbox" id="termsCheckbox" name="accept_terms">
+            I accept the <a href="{% url 'terms' %}" target="_blank">Terms & Conditions</a>
+        </label>
+        <button type="submit" class="checkout-btn" id="checkoutButton" disabled>Proceed to Checkout</button>
+    </div>
+</form>
+
+    {% endif %}
+</div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>
+            <a href="{% url 'terms' %}">Terms & Conditions</a>
+        </p>
+        <p class="footer-note">&copy; {{ now.year }} VintageMemère. All rights reserved.</p>
+    </div>
+</footer>
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const termsCheckbox = document.getElementById("termsCheckbox");
+    const checkoutButton = document.getElementById("checkoutButton");
+
+    termsCheckbox.addEventListener("change", function () {
+      checkoutButton.disabled = !this.checked;
+      if (this.checked) {
+        checkoutButton.classList.remove("disabled-btn");
+      } else {
+        checkoutButton.classList.add("disabled-btn");
+      }
+    });
+  });
+</script>
+
+{% endblock %}

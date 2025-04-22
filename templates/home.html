@@ -20,10 +20,20 @@
 
     <!-- Main Site Content -->
     <div id="site-content">
-        <!-- Navigation Bar -->
         <header class="site-header">
-            <!-- Your navigation content here -->
-        </header>
+    <nav class="navbar">
+      <!-- Add nav links or dropdowns here -->
+
+      <!-- Cart Icon -->
+      <ul class="nav-right">
+        <li>
+          <a href="{% url 'cart' %}">
+            <img src="{% static 'myapp/js/shoppingbasket.png' %}" alt="Cart" class="cart-icon-img">
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
         <!-- Main Content -->
         <main>
@@ -47,8 +57,8 @@
                 </div>
                 <div class="instagram-text">
                     <h2>Retro Finds, Fresh Feeds.<br>Tap In.</h2>
-                    <a href="https://www.instagram.com/yourbrand" target="_blank" class="follow-button">
-                        Follow Us →
+                    <a href="https://www.instagram.com/vintagememere/" target="_blank" class="follow-button">
+                        FOLLOW US →
                     </a>
                 </div>
             </div>
@@ -56,15 +66,17 @@
             <!-- Product Grid -->
             <div class="product-grid">
                 {% for product in products %}
-                    <div class="product-card">
-                        <a href="{% url 'product_detail' product.id %}">
-                            <div class="image-container">
-                                <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}" class="first-image">
-                                {% if product.images.all|length > 1 %}
-                                    <img src="{{ product.images.all.1.image.url }}" alt="{{ product.name }}" class="second-image">
-                                {% endif %}
-                            </div>
-                        </a>
+                    <div class="product-hover-group">
+                        <div class="product-card">
+                            <a href="{% url 'product_detail' product.id %}">
+                                <div class="image-container">
+                                    <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}" class="first-image">
+                                    {% if product.images.all|length > 1 %}
+                                        <img src="{{ product.images.all.1.image.url }}" alt="{{ product.name }}" class="second-image">
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </div>
                         <div class="product-info">
                             <div class="title-container">
                                 <h2 class="{% if product.name|length > 25 %}long-title{% endif %}">
@@ -78,8 +90,17 @@
             </div>
         </main>
     </div>
+    <footer class="site-footer">
+    <div class="footer-content">
+        <p>
+            <a href="{% url 'terms' %}">Terms & Conditions</a>
+        </p>
+        <p class="footer-note">&copy; {{ now.year }} VintageMemère. All rights reserved.</p>
+    </div>
+</footer>
 
     <!-- Link to External JavaScript -->
     <script src="{% static 'myapp/js/home.js' %}"></script>
 </body>
 </html>
+
