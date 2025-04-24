@@ -16,11 +16,13 @@ import stripe
 from .models import Product
 from django.conf import settings
 
+from django.conf import settings
+
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    endpoint_secret = 'whsec_a9f54b6d4b976fcc0ca9be5a5ccf7cb733a3ea32de925ed5bfc81c7f3116cbb9'  # You'll replace this in step 4
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE', '')
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET  # ✅ now pulling from env var
 
     try:
         event = stripe.Webhook.construct_event(
