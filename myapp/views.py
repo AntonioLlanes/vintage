@@ -132,8 +132,8 @@ def cart_checkout(request):
             'payment_method_types': ['card'],
             'line_items': line_items,
             'mode': 'payment',
-            'success_url': 'http://127.0.0.1:8000/success/',
-            'cancel_url': 'http://127.0.0.1:8000/cart/',
+            'success_url': 'http://www.vintagememere.com/success/',
+            'cancel_url': 'http://www.vintagememere.com/cancel/',
             'shipping_address_collection': {
                 'allowed_countries': ['US']
             },
