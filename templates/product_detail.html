@@ -35,7 +35,7 @@
     <button type="submit" class="add-to-cart-btn">Add to Cart</button>
   </form>
 {% endif %}
-  
+
 
 
 
@@ -51,17 +51,20 @@
     const checkbox = document.getElementById("termsCheckbox");
     const buyButton = document.getElementById("buyNowButton");
 
-    checkbox.addEventListener("change", function () {
-      if (this.checked) {
-        buyButton.disabled = false;
-        buyButton.classList.remove("disabled-btn");
-      } else {
-        buyButton.disabled = true;
-        buyButton.classList.add("disabled-btn");
-      }
-    });
+    if (checkbox && buyButton) {
+      checkbox.addEventListener("change", function () {
+        if (this.checked) {
+          buyButton.disabled = false;
+          buyButton.classList.remove("disabled-btn");
+        } else {
+          buyButton.disabled = true;
+          buyButton.classList.add("disabled-btn");
+        }
+      });
+    }
+  });
+</script>
 
-  </script>
 
     
 {% endblock %}

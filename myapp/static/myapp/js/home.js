@@ -17,52 +17,58 @@ window.addEventListener('load', () => {
     const realLogoContainer = document.querySelector('.logo');
     const content = document.getElementById('site-content');
 
-    // Make sure homepage logo is hidden initially
-    realLogoContainer.style.opacity = 0;
+    const introData = localStorage.getItem('introSeenTimestamp');
+    const now = new Date().getTime();
 
-    // Step 1: Fade to background color
-    setTimeout(() => {
-        screen.classList.add('reveal-bg');
-    }, 300);
+    const ONE_HOUR = 60 * 60 * 1000;
 
-    // Step 2: Show intro logo
-    setTimeout(() => {
-        screen.classList.add('show-logo');
-    }, 800);
+    if (!introData || now - parseInt(introData) > ONE_HOUR) {
+        // Show intro
+        realLogoContainer.style.opacity = 0;
 
-    // Step 3: Animate intro logo into homepage logo position
-    setTimeout(() => {
-        const logoRect = realLogo.getBoundingClientRect();
-        const introRect = introLogo.getBoundingClientRect();
+        setTimeout(() => {
+            screen.classList.add('reveal-bg');
+        }, 300);
 
-        const deltaX = logoRect.left - introRect.left;
-        const deltaY = logoRect.top - introRect.top;
-        const scaleX = logoRect.width / introRect.width;
-        const scaleY = logoRect.height / introRect.height;
+        setTimeout(() => {
+            screen.classList.add('show-logo');
+        }, 800);
 
-        introLogo.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})`;
-        introLogo.style.transition = 'transform 1s ease-in-out';
-    }, 2500);
+        setTimeout(() => {
+            const logoRect = realLogo.getBoundingClientRect();
+            const introRect = introLogo.getBoundingClientRect();
 
-  // Step 4: Reveal main content and homepage logo
-setTimeout(() => {
-    // Fade out intro screen
-    screen.style.transition = 'opacity 1s ease';
-    screen.style.opacity = 0;
+            const deltaX = logoRect.left - introRect.left;
+            const deltaY = logoRect.top - introRect.top;
+            const scaleX = logoRect.width / introRect.width;
+            const scaleY = logoRect.height / introRect.height;
 
-    // Fade in real logo
-    realLogoContainer.style.transition = 'opacity 0.5s ease';
-    realLogoContainer.style.opacity = 1;
+            introLogo.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})`;
+            introLogo.style.transition = 'transform 1s ease-in-out';
+        }, 2500);
 
-    // Fade in page content
-    content.style.transition = 'opacity 1s ease';
-    content.style.opacity = 1;
+        setTimeout(() => {
+            screen.style.transition = 'opacity 1s ease';
+            screen.style.opacity = 0;
 
-    // After fade-out is done, fully remove intro screen
-    setTimeout(() => {
+            realLogoContainer.style.transition = 'opacity 0.5s ease';
+            realLogoContainer.style.opacity = 1;
+
+            content.style.transition = 'opacity 1s ease';
+            content.style.opacity = 1;
+
+            setTimeout(() => {
+                screen.style.display = 'none';
+                localStorage.setItem('introSeenTimestamp', now.toString()); // Save new timestamp
+            }, 1000);
+        }, 3700);
+
+    } else {
+        // Skip intro
         screen.style.display = 'none';
-    }, 1000);
-}, 3700);
+        realLogoContainer.style.opacity = 1;
+        content.style.opacity = 1;
+    }
 });
 
 // Burger menu & dropdown toggle

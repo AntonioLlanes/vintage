@@ -22,10 +22,13 @@ body {
 }
 
 #intro-logo {
-    width: 40em; /* Match your .logo img on homepage */
+    width: 90vw;            /* Responsive to screen */
+    max-width: 600px;       /* Cap it for big screens */
     opacity: 0;
     transition: opacity 1.5s ease, transform 1s ease;
+    height: auto;           /* Maintain aspect ratio */
 }
+
 
 
 /* Reveal background */
@@ -244,11 +247,14 @@ input[type=text]{
     justify-content: center;
     align-items: center;
 }
-.logo img{
-    margin: 0%;
+.logo img {
+    margin: 0;
     margin-top: 4%;
-    width: 40em;
+    width: 90vw;          /* 90% of viewport width */
+    max-width: 600px;     /* don't get too huge */
+    height: auto;         /* maintain aspect ratio */
 }
+
 
 .auth-buttons {
     text-align: center;
