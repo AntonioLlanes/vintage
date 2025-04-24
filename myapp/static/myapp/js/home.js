@@ -10,26 +10,89 @@ const offScreenMenu = document.querySelector('.off-screen-menu');
 const dropdown = document.querySelector(".dropdown");
 const content = document.querySelector(".content");
 //FOR THE CATEGORIES
-dropdown.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevents event bubbling
-        content.classList.toggle("active");
-    });
-document.addEventListener("DOMContentLoaded", function() {
-    //obviously the menu button is what is waiting to be clicked
+window.addEventListener('load', () => {
+    const screen = document.getElementById('intro-screen');
+    const introLogo = document.getElementById('intro-logo');
+    const realLogo = document.querySelector('.logo img');
+    const realLogoContainer = document.querySelector('.logo');
+    const content = document.getElementById('site-content');
+
+    const introData = localStorage.getItem('introSeenTimestamp');
+    const now = new Date().getTime();
+
+    const ONE_HOUR = 60 * 60 * 1000;
+
+    if (!introData || now - parseInt(introData) > ONE_HOUR) {
+        // Show intro
+        realLogoContainer.style.opacity = 0;
+
+        setTimeout(() => {
+            screen.classList.add('reveal-bg');
+        }, 300);
+
+        setTimeout(() => {
+            screen.classList.add('show-logo');
+        }, 800);
+
+        setTimeout(() => {
+            const logoRect = realLogo.getBoundingClientRect();
+            const introRect = introLogo.getBoundingClientRect();
+
+            const deltaX = logoRect.left - introRect.left;
+            const deltaY = logoRect.top - introRect.top;
+            const scaleX = logoRect.width / introRect.width;
+            const scaleY = logoRect.height / introRect.height;
+
+            introLogo.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})`;
+            introLogo.style.transition = 'transform 1s ease-in-out';
+        }, 2500);
+
+        setTimeout(() => {
+            screen.style.transition = 'opacity 1s ease';
+            screen.style.opacity = 0;
+
+            realLogoContainer.style.transition = 'opacity 0.5s ease';
+            realLogoContainer.style.opacity = 1;
+
+            content.style.transition = 'opacity 1s ease';
+            content.style.opacity = 1;
+
+            setTimeout(() => {
+                screen.style.display = 'none';
+                localStorage.setItem('introSeenTimestamp', now.toString()); // Save new timestamp
+            }, 1000);
+        }, 3700);
+
+    } else {
+        // Skip intro
+        screen.style.display = 'none';
+        realLogoContainer.style.opacity = 1;
+        content.style.opacity = 1;
+    }
+});
+
+// Burger menu & dropdown toggle
+document.addEventListener("DOMContentLoaded", () => {
+    const offScreenMenu = document.querySelector('.off-screen-menu');
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownContent = document.querySelector(".content");
     const menuButton = document.getElementById("menu-toggle");
-    //then the menu icon is what is going to be changed into another photo
     const menuIcon = document.getElementById("menu-icon");
 
-    // Store the correct static paths manually
     const menuClosed = menuIcon.getAttribute("data-closed");
     const menuOpen = menuIcon.getAttribute("data-open");
 
-    menuButton.addEventListener("click", function() {
-        offScreenMenu.classList.toggle('active')
+    dropdown.addEventListener("click", function (event) {
+        event.stopPropagation();
+        dropdownContent.classList.toggle("active");
+    });
+
+    menuButton.addEventListener("click", function () {
+        offScreenMenu.classList.toggle('active');
         if (menuIcon.src.includes("linesCLOSED.png")) {
-            menuIcon.src = menuOpen; // Change to open icon
+            menuIcon.src = menuOpen;
         } else {
-            menuIcon.src = menuClosed; // Change back
+            menuIcon.src = menuClosed;
         }
     });
 });

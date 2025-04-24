@@ -4,9 +4,9 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_instagram_image_url(post_url):
-    """Retrieve the image URL from an Instagram post."""
+    """Retrieve the image URL from an instagram post."""
     try:
-        # Send a GET request to the Instagram post
+        # Send a GET request to the instagram post
         response = requests.get(post_url, headers={'User-Agent': 'Mozilla/5.0'})
         response.raise_for_status()  # Raise an error for bad status codes
 
@@ -27,17 +27,9 @@ class ProductImageInline(admin.TabularInline):  # Use StackedInline for vertical
     model = ProductImage
     extra = 3  # Allows adding up to 3 images at once (adjust as needed)
 
-
-@admin.register(InstagramImage)
-class InstagramImageAdmin(admin.ModelAdmin):
-    list_display = ('post_url', 'image_url')
-    actions = ['fetch_image_urls']
-
-    def save_model(self, request, obj, form, change):
-        """Automatically fetch image URL when saving an InstagramImage."""
-        if obj.post_url and not obj.image_url:
-            obj.image_url = get_instagram_image_url(obj.post_url)
-        super().save_model(request, obj, form, change)
+    @admin.register(InstagramImage)
+    class InstagramImageAdmin(admin.ModelAdmin):
+        list_display = ['image_file', 'link']
 
     @admin.action(description='Fetch image URLs for selected posts')
     def fetch_image_urls(self, request, queryset):

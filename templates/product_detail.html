@@ -1,80 +1,70 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta name ="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-        <!-- Swiper.js CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-        <!-- Swiper.js JavaScript -->
-        <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+{% block title %}{{ product.name }} | Vintage Memère{% endblock %}
 
-        <title> Search </title>
-    </head>
-<body>   
-<!-- templates/product_detail.html -->
-<!-- templates/product_detail.html -->
-<!-- templates/product_detail.html -->
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'myapp/css/product_detail.css' %}">
+{% endblock %}
 
-<div class="product-detail-container">
-    <!-- Image Slider -->
-    <div class="product-slider">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                {% for image in product.images.all %}
-                    <div class="swiper-slide">
-                        <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" class="product-image">
-                    </div>
-                {% endfor %}
-            </div>
+{% block content %}
+<div class="product-page-container">
+  <!-- Left side: Images -->
+ <div class="product-images-container">
+  <div class="main-image-and-thumbs">
+    <img id="mainProductImage" src="{{ product.images.first.image.url }}" class="main-product-img">
 
-            <!-- Slider Navigation -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
+    <div class="thumbnail-row">
+      {% for image in product.images.all %}
+        <img src="{{ image.image.url }}" class="thumbnail-img" onclick="changeMainImage(this)">
+      {% endfor %}
     </div>
+  </div>
 
-    <!-- Product Details -->
-    <div class="product-details">
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.description }}</p>
-        <p>Price: <strong>${{ product.price }}</strong></p>
-        <p>Size: {{ product.get_size_display }}</p>
-        <p>Category: {{ product.category }}</p>
-        <p>Brand: {{ product.brand }}</p>
+  <div class="product-info-container">
+    <h1 class="product-name">{{ product.name }}</h1>
+    <p class="product-price">${{ product.price }}</p>
+    <p class="product-description">{{ product.description }}</p>
+      {% if product.id|stringformat:"s" in request.session.cart %}
+  <!-- Product is already in cart -->
+  <a href="{% url 'cart' %}" class="in-cart-btn">In Cart →</a>
+{% else %}
+  <!-- Product is not in cart -->
+  <form action="{% url 'add_to_cart' product.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+  </form>
+{% endif %}
 
-        <!-- Buy Now Button -->
-        <form action="{% url 'checkout' product.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="buy-button">Buy Now</button>
-        </form>
+
+
+
     </div>
 </div>
-
-</body>
-
-<!-- Swiper.js JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var swiper = new Swiper('.mySwiper', {
-            loop: true,                 // Infinite loop
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            autoplay: {
-                delay: 3000,            // Auto slide every 3 seconds
-                disableOnInteraction: false,
-            },
-            spaceBetween: 10,           // Space between slides
-            slidesPerView: 1,           // Show one image at a time
-        });
-    });
+  function changeMainImage(thumbnail) {
+    document.getElementById("mainProductImage").src = thumbnail.src;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const checkbox = document.getElementById("termsCheckbox");
+    const buyButton = document.getElementById("buyNowButton");
+
+    if (checkbox && buyButton) {
+      checkbox.addEventListener("change", function () {
+        if (this.checked) {
+          buyButton.disabled = false;
+          buyButton.classList.remove("disabled-btn");
+        } else {
+          buyButton.disabled = true;
+          buyButton.classList.add("disabled-btn");
+        }
+      });
+    }
+  });
 </script>
+
+
+    
+{% endblock %}
