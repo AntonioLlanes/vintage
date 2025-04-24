@@ -20,14 +20,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Stripe API Keys
-STRIPE_PUBLIC_KEY = 'pk_test_51QvutZPw96YuzF5GnZ2ArnkDfKwA49tPCoISOVllyq1aaCIKMcuVHk6H0FC7sHHtHM2f7EWYrD85SkYFsfwrj1w700GrQsWJ8a'
-STRIPE_SECRET_KEY = 'sk_test_51QvutZPw96YuzF5GNnTE0BfzBl7ORELPixxXVVzy51GkaYbbnEvJAEXVbfEw7Ma6OugyvMQbN4jdmsDEda5WF8Aw00vqXEYlAq'
-
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7_hmef#6+f6@&9c-_9*-oo3b#vrk+g131*9ede5c=yyhia8f_d'
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -125,8 +126,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfles'
+# Static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
