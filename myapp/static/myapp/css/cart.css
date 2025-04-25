@@ -199,3 +199,21 @@ main {
   margin: 0;
   padding: 0;
 }
+
+@media (max-width: 768px) {
+  .cart-container {
+    width: 100vw;
+    right: 0;
+    padding: 1rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-img {
+    max-width: 100%;
+    height: auto;
+  }
+}
