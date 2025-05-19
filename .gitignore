@@ -1,0 +1,24 @@
+# 🌈 ENV / Secrets
+.env
+*.env
+
+# 🐍 Python
+__pycache__/
+*.py[cod]
+db.sqlite3
+
+# 🧪 Virtual Env
+.venv/
+venv/
+
+# 🖼 Django Static/Media
+staticfiles/
+media/
+
+# 🧠 IDEs
+.idea/
+.vscode/
+
+# 🌐 OS Stuff
+.DS_Store
+Thumbs.db
